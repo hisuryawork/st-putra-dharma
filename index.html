@@ -1,0 +1,489 @@
+cat > /home/claude/index_v2.html << 'HTMLEOF'
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>ST. Putra Dharma — Sekaa Teruna Banjar Adat</title>
+<meta name="description" content="ST. Putra Dharma — organisasi pemuda banjar adat di Bali, bergerak di bidang budaya, kesenian, lingkungan, dan kemanusiaan. Berdiri sejak 11 Agustus 1981.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --white:#ffffff;
+    --offwhite:#F5F5F7;
+    --black:#000000;
+    --near-black:#0A0A0B;
+    --ink:#1D1D1F;
+    --ink-secondary:#6E6E73;
+    --light-secondary:#86868B;
+    --gold:#C8A050;
+    --gold-soft:#E8C77E;
+    --line-light:rgba(0,0,0,0.08);
+    --line-dark:rgba(255,255,255,0.12);
+    --radius-lg:28px;
+    --radius-md:20px;
+    --radius-sm:14px;
+    --max:1180px;
+    --font: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; font-family:var(--font); color:var(--ink); background:var(--white);
+    -webkit-font-smoothing:antialiased; line-height:1.5;
+    padding-bottom:0;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit; text-decoration:none;}
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 24px;}
+  section{padding:100px 0;}
+  @media(max-width:720px){ section{padding:72px 0;} }
+
+  .section-light{background:var(--white); color:var(--ink);}
+  .section-tint{background:var(--offwhite); color:var(--ink);}
+  .section-dark{background:var(--black); color:var(--white);}
+  .section-dark .secondary{color:var(--light-secondary);}
+  .section-light .secondary, .section-tint .secondary{color:var(--ink-secondary);}
+
+  h1,h2,h3{margin:0; font-weight:800; letter-spacing:-0.02em; line-height:1.05;}
+  .eyebrow{
+    font-size:13px; font-weight:600; letter-spacing:0.02em;
+    color:var(--gold); margin-bottom:14px; text-transform:uppercase;
+  }
+  .headline{font-size:clamp(34px,6vw,56px); margin-bottom:18px;}
+  .headline .accent{color:var(--gold);}
+  p.body-text{font-size:18px; line-height:1.6; max-width:560px;}
+  .secondary{font-size:18px;}
+
+  /* Buttons (pill, Apple-style) */
+  .btn{
+    display:inline-block; padding:14px 28px; border-radius:980px;
+    font-size:15px; font-weight:600; cursor:pointer; transition:transform .15s ease, opacity .15s ease;
+    border:1px solid transparent;
+  }
+  .btn:active{transform:scale(0.96);}
+  .btn-fill-dark{background:var(--ink); color:var(--white);}
+  .btn-fill-dark:hover{opacity:0.85;}
+  .btn-fill-light{background:var(--white); color:var(--ink);}
+  .btn-outline{border-color:rgba(0,0,0,0.25); color:var(--ink);}
+  .section-dark .btn-outline{border-color:rgba(255,255,255,0.3); color:var(--white);}
+  .btn-gold{background:var(--gold); color:#1A1305;}
+
+  /* ---------- Top nav ---------- */
+  header{
+    position:sticky; top:0; z-index:60;
+    background:rgba(255,255,255,0.78);
+    backdrop-filter:saturate(180%) blur(20px);
+    -webkit-backdrop-filter:saturate(180%) blur(20px);
+    border-bottom:1px solid var(--line-light);
+  }
+  .nav{
+    max-width:var(--max); margin:0 auto; padding:0 24px;
+    height:52px; display:flex; align-items:center; justify-content:space-between;
+  }
+  .nav-brand{display:flex; align-items:center; gap:10px; font-weight:700; font-size:15px;}
+  .nav-mark{
+    width:28px; height:28px; border-radius:8px; background:var(--ink);
+    color:var(--white); display:flex; align-items:center; justify-content:center;
+    font-size:11px; font-weight:800; flex-shrink:0;
+  }
+  .nav-links{display:flex; gap:28px; font-size:14px; font-weight:500; color:var(--ink-secondary);}
+  .nav-links a:hover{color:var(--ink);}
+  .nav-cta{
+    background:var(--ink); color:var(--white); padding:8px 18px;
+    border-radius:980px; font-size:13.5px; font-weight:600;
+  }
+  @media(max-width:720px){ .nav-links{display:none;} }
+
+  /* ---------- Hero ---------- */
+  .hero{padding:64px 0 0;}
+  .hero-inner{max-width:680px; margin:0 auto; text-align:center;}
+  .hero .eyebrow{justify-content:center; display:flex; align-items:center; gap:6px;}
+  .hero h1{font-size:clamp(38px,8vw,64px);}
+  .hero p.body-text{margin:20px auto 32px; text-align:center;}
+  .hero-actions{display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-bottom:56px;}
+
+  /* Floating stat card (dark, on light hero) */
+  .stat-card{
+    background:var(--black); border-radius:var(--radius-lg);
+    padding:40px 28px; max-width:920px; margin:0 auto;
+    box-shadow:0 30px 60px -20px rgba(0,0,0,0.35);
+    display:grid; grid-template-columns:repeat(4,1fr); gap:8px;
+  }
+  .stat-card .stat{text-align:center; padding:12px 4px;}
+  .stat-card .num{font-size:clamp(26px,4.5vw,42px); font-weight:800; color:var(--white); letter-spacing:-0.02em;}
+  .stat-card .lbl{font-size:12px; color:var(--light-secondary); margin-top:6px; font-weight:500;}
+  @media(max-width:640px){ .stat-card{grid-template-columns:repeat(2,1fr); gap:24px 8px; border-radius:var(--radius-md);} }
+
+  /* ---------- Bidang grid (dark section) ---------- */
+  .bidang-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:16px; margin-top:48px;}
+  @media(max-width:640px){ .bidang-grid{grid-template-columns:1fr;} }
+  .bidang-card{
+    background:rgba(255,255,255,0.06); border:1px solid var(--line-dark);
+    border-radius:var(--radius-md); padding:32px; backdrop-filter:blur(10px);
+  }
+  .bidang-icon{
+    width:44px; height:44px; margin-bottom:18px; color:var(--gold);
+  }
+  .bidang-card h3{font-size:19px; font-weight:700; margin-bottom:8px; letter-spacing:-0.01em;}
+  .bidang-card p{font-size:14.5px; color:var(--light-secondary); margin:0; line-height:1.6;}
+
+  /* ---------- Struktur (grouped list iOS style) ---------- */
+  .group-label{font-size:13px; font-weight:600; color:var(--ink-secondary); text-transform:uppercase; letter-spacing:0.02em; margin:36px 0 12px;}
+  .group-label:first-of-type{margin-top:0;}
+  .grouped-list{background:var(--white); border-radius:var(--radius-md); overflow:hidden; box-shadow:0 1px 2px rgba(0,0,0,0.04), 0 12px 28px -16px rgba(0,0,0,0.12);}
+  .grouped-row{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 22px; border-bottom:1px solid var(--line-light);
+  }
+  .grouped-row:last-child{border-bottom:none;}
+  .grouped-row .role{font-size:15.5px; font-weight:600; color:var(--ink);}
+  .grouped-row .name{font-size:14.5px; color:var(--light-secondary); font-style:italic;}
+
+  /* ---------- Kegiatan: horizontal snap carousel ---------- */
+  .carousel{
+    display:flex; gap:18px; overflow-x:auto; padding:8px 24px 24px;
+    scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;
+    margin:0 -24px;
+  }
+  .carousel::-webkit-scrollbar{display:none;}
+  .kcard{
+    scroll-snap-align:start; flex:0 0 280px; background:rgba(255,255,255,0.05);
+    border:1px solid var(--line-dark); border-radius:var(--radius-md); overflow:hidden;
+  }
+  .kcard-photo{
+    aspect-ratio:4/3; background:rgba(255,255,255,0.04);
+    border-bottom:1px solid var(--line-dark);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--light-secondary); font-size:12px; text-align:center; padding:14px;
+  }
+  .kcard-body{padding:22px;}
+  .kcard .k-when{font-size:11.5px; color:var(--gold); font-weight:700; text-transform:uppercase; letter-spacing:0.04em; margin-bottom:8px;}
+  .kcard h3{font-size:18px; font-weight:700; margin-bottom:8px;}
+  .kcard p{font-size:13.5px; color:var(--light-secondary); margin:0; line-height:1.55;}
+
+  /* ---------- Galeri ---------- */
+  .galeri-grid{display:grid; grid-template-columns:repeat(4,1fr); grid-auto-rows:110px; gap:10px;}
+  @media(max-width:720px){ .galeri-grid{grid-template-columns:repeat(2,1fr); grid-auto-rows:140px;} }
+  .g-item{
+    background:var(--offwhite); border:1px solid var(--line-light); border-radius:var(--radius-sm);
+    display:flex; align-items:center; justify-content:center; color:var(--ink-secondary);
+    font-size:11.5px; text-align:center; padding:8px;
+  }
+  .g-big{grid-column:span 2; grid-row:span 2;}
+  @media(max-width:720px){ .g-big{grid-column:span 2; grid-row:span 1;} }
+
+  /* ---------- Kontak ---------- */
+  .kontak-list .grouped-row{padding:20px 22px;}
+  .kontak-list .role{color:var(--light-secondary); font-weight:500; font-size:13.5px; text-transform:uppercase; letter-spacing:0.03em;}
+  .kontak-list .name{color:var(--white); font-style:normal; font-size:15.5px;}
+  .section-dark .grouped-list{background:rgba(255,255,255,0.06); border:1px solid var(--line-dark); box-shadow:none;}
+  .section-dark .grouped-row{border-bottom:1px solid var(--line-dark);}
+  .note-card{
+    margin-top:20px; padding:20px 22px; border-radius:var(--radius-sm);
+    background:rgba(200,160,80,0.08); border:1px solid rgba(200,160,80,0.25);
+    font-size:13.5px; color:var(--light-secondary); line-height:1.7;
+  }
+  .note-card b{color:var(--gold-soft);}
+
+  /* ---------- Poleng flourish (very restrained) ---------- */
+  .poleng-strip{
+    height:5px; width:100%;
+    background-image:
+      repeating-linear-gradient(45deg, var(--ink) 0, var(--ink) 6px, transparent 6px, transparent 12px),
+      repeating-linear-gradient(135deg, var(--ink) 0, var(--ink) 6px, var(--white) 6px, var(--white) 12px);
+    background-color:var(--white); background-size:12px 12px; opacity:0.5;
+  }
+
+  /* ---------- Footer ---------- */
+  footer{padding:48px 0 100px; text-align:center; background:var(--offwhite);}
+  footer .f-name{font-weight:700; font-size:16px; margin-bottom:4px;}
+  footer p{font-size:12.5px; color:var(--ink-secondary); margin:3px 0;}
+  @media(min-width:721px){ footer{padding-bottom:48px;} }
+
+  /* ---------- Reveal animation ---------- */
+  .reveal{opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){ .reveal{opacity:1; transform:none; transition:none;} }
+
+  /* ---------- iOS-style bottom tab bar (mobile only) ---------- */
+  .tabbar{
+    display:none;
+  }
+  @media(max-width:720px){
+    .tabbar{
+      display:flex; position:fixed; left:0; right:0; bottom:0; z-index:70;
+      background:rgba(255,255,255,0.82);
+      backdrop-filter:saturate(180%) blur(20px);
+      -webkit-backdrop-filter:saturate(180%) blur(20px);
+      border-top:1px solid var(--line-light);
+      padding:8px 6px calc(8px + env(safe-area-inset-bottom));
+      justify-content:space-around;
+    }
+    body{padding-bottom:78px;}
+    .tab-item{
+      display:flex; flex-direction:column; align-items:center; gap:3px;
+      color:var(--ink-secondary); font-size:10.5px; font-weight:600;
+      padding:4px 6px; flex:1; min-width:0;
+    }
+    .tab-item svg{width:23px; height:23px;}
+    .tab-item.active{color:var(--gold);}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="nav-brand">
+      <!-- GANTI: ganti .nav-mark dengan <img src="logo.png"> setelah logo tersedia -->
+      <div class="nav-mark">PD</div>
+      <span>ST. Putra Dharma</span>
+    </div>
+    <nav class="nav-links">
+      <a href="#tentang">Tentang</a>
+      <a href="#struktur">Struktur</a>
+      <a href="#kegiatan">Kegiatan</a>
+      <a href="#galeri">Galeri</a>
+    </nav>
+    <a href="#kontak" class="nav-cta">Kontak</a>
+  </div>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero section-light">
+  <div class="wrap hero-inner">
+    <div class="eyebrow">Sekaa Teruna · Banjar Adat, Bali</div>
+    <h1>Menjaga <span class="accent">tradisi</span>,<br>merawat masa depan.</h1>
+    <p class="body-text">ST. Putra Dharma adalah wadah pemuda-pemudi banjar yang bergerak di bidang budaya, kesenian, lingkungan, dan kemanusiaan — berdiri sejak 11 Agustus 1981.</p>
+    <div class="hero-actions">
+      <a href="#tentang" class="btn btn-fill-dark">Tentang Kami</a>
+      <a href="#kontak" class="btn btn-outline">Hubungi Kami</a>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="stat-card reveal">
+      <div class="stat"><div class="num">1981</div><div class="lbl">Tahun Berdiri</div></div>
+      <div class="stat"><div class="num">45</div><div class="lbl">Tahun Mengabdi</div></div>
+      <div class="stat"><div class="num">90+</div><div class="lbl">Anggota Aktif</div></div>
+      <div class="stat"><div class="num">4</div><div class="lbl">Bidang Kegiatan</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TENTANG ===================== -->
+<section id="tentang" class="section-dark">
+  <div class="wrap">
+    <div class="eyebrow">Tentang Kami</div>
+    <h2 class="headline reveal" style="max-width:680px;">Bagian resmi dari denyut adat banjar.</h2>
+    <p class="secondary reveal" style="max-width:620px; font-size:18px; line-height:1.65;">Berada di bawah naungan Kelian Adat Banjar, ST. Putra Dharma menjadi tempat generasi muda belajar bertanggung jawab terhadap tradisi, lingkungan, dan sesama — kini memasuki usia ke-45 dengan sekitar 90 anggota aktif.</p>
+
+    <div class="bidang-grid">
+      <div class="bidang-card reveal">
+        <svg class="bidang-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6 L40 20 H8 Z"/><path d="M12 20 V40 H36 V20"/><path d="M20 40 V28 H28 V40"/></svg>
+        <h3>Budaya</h3>
+        <p>Melestarikan adat dan tata cara upacara yang diwariskan turun-temurun di lingkungan banjar.</p>
+      </div>
+      <div class="bidang-card reveal">
+        <svg class="bidang-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="24" cy="24" rx="16" ry="19"/><circle cx="17" cy="20" r="2.4" fill="currentColor" stroke="none"/><circle cx="31" cy="20" r="2.4" fill="currentColor" stroke="none"/><path d="M16 30 Q24 36 32 30"/></svg>
+        <h3>Kesenian</h3>
+        <p>Mewadahi kreativitas seni pemuda, dari pembuatan ogoh-ogoh hingga kesenian tradisional lainnya.</p>
+      </div>
+      <div class="bidang-card reveal">
+        <svg class="bidang-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6 C24 6 12 16 12 27 C12 35 17.4 41 24 41 C30.6 41 36 35 36 27 C36 16 24 6 24 6 Z"/><path d="M24 41 V20"/></svg>
+        <h3>Lingkungan</h3>
+        <p>Menggerakkan gotong royong dan kepedulian terhadap kebersihan serta kelestarian lingkungan.</p>
+      </div>
+      <div class="bidang-card reveal">
+        <svg class="bidang-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M24 38 C12 30 6 23 6 16.5 C6 11.8 9.8 8 14.5 8 C18 8 21 10 24 14 C27 10 30 8 33.5 8 C38.2 8 42 11.8 42 16.5 C42 23 36 30 24 38 Z"/></svg>
+        <h3>Kemanusiaan</h3>
+        <p>Hadir dalam kegiatan sosial dan saling bantu antarwarga sebagai wujud rasa kekeluargaan.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== STRUKTUR ===================== -->
+<section id="struktur" class="section-tint">
+  <div class="wrap">
+    <div class="eyebrow">Struktur Organisasi</div>
+    <h2 class="headline reveal" style="max-width:600px;">Pengurus periode berjalan.</h2>
+
+    <!-- GANTI: isi nama-nama pengurus sesuai data asli -->
+    <div class="group-label">Pimpinan</div>
+    <div class="grouped-list reveal">
+      <div class="grouped-row"><span class="role">Ketua STT</span><span class="name">Nama Pengurus</span></div>
+      <div class="grouped-row"><span class="role">Wakil Ketua STT</span><span class="name">Nama Pengurus</span></div>
+    </div>
+
+    <div class="group-label">Kesekretariatan &amp; Keuangan</div>
+    <div class="grouped-list reveal">
+      <div class="grouped-row"><span class="role">Sekretaris I</span><span class="name">Nama Pengurus</span></div>
+      <div class="grouped-row"><span class="role">Sekretaris II</span><span class="name">Nama Pengurus</span></div>
+      <div class="grouped-row"><span class="role">Bendahara I</span><span class="name">Nama Pengurus</span></div>
+      <div class="grouped-row"><span class="role">Bendahara II</span><span class="name">Nama Pengurus</span></div>
+    </div>
+
+    <div class="group-label">Koordinator Wilayah</div>
+    <div class="grouped-list reveal">
+      <div class="grouped-row"><span class="role">Ketua Tempek I</span><span class="name">Nama Pengurus</span></div>
+      <div class="grouped-row"><span class="role">Ketua Tempek II</span><span class="name">Nama Pengurus</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== KEGIATAN ===================== -->
+<section id="kegiatan" class="section-dark">
+  <div class="wrap">
+    <div class="eyebrow">Agenda Tahunan</div>
+    <h2 class="headline reveal" style="max-width:600px;">Tradisi yang terus berulang, setiap tahun.</h2>
+  </div>
+  <div class="carousel">
+    <div class="kcard reveal">
+      <div class="kcard-photo">Foto kegiatan akan ditambahkan</div>
+      <div class="kcard-body">
+        <div class="k-when">Agustus</div>
+        <h3>HUT ST. Putra Dharma</h3>
+        <p>Perayaan hari jadi organisasi, momen kebersamaan seluruh anggota dan warga banjar.</p>
+      </div>
+    </div>
+    <div class="kcard reveal">
+      <div class="kcard-photo">Foto kegiatan akan ditambahkan</div>
+      <div class="kcard-body">
+        <div class="k-when">Menjelang Nyepi</div>
+        <h3>Pengarakan Ogoh-Ogoh</h3>
+        <p>Pembuatan dan pawai ogoh-ogoh karya pemuda banjar sebagai wujud kreativitas seni.</p>
+      </div>
+    </div>
+    <div class="kcard reveal">
+      <div class="kcard-photo">Foto kegiatan akan ditambahkan</div>
+      <div class="kcard-body">
+        <div class="k-when">Periodik</div>
+        <h3>Penggalian Dana</h3>
+        <p>Kegiatan penggalangan dana untuk mendukung operasional dan program organisasi.</p>
+      </div>
+    </div>
+    <div class="kcard reveal">
+      <div class="kcard-photo">Foto kegiatan akan ditambahkan</div>
+      <div class="kcard-body">
+        <div class="k-when">Sepanjang tahun</div>
+        <h3>Bakti Sosial &amp; Lingkungan</h3>
+        <p>Gotong royong dan kegiatan sosial sebagai wujud kepedulian terhadap sesama dan lingkungan.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== GALERI ===================== -->
+<section id="galeri" class="section-light">
+  <div class="wrap">
+    <div class="eyebrow">Galeri</div>
+    <h2 class="headline reveal" style="max-width:560px;">Dokumentasi kegiatan.</h2>
+    <!-- GANTI: ganti setiap .g-item dengan <img src="..."> setelah foto tersedia -->
+    <div class="galeri-grid reveal">
+      <div class="g-item g-big">Foto 1</div>
+      <div class="g-item">Foto 2</div>
+      <div class="g-item">Foto 3</div>
+      <div class="g-item">Foto 4</div>
+      <div class="g-item">Foto 5</div>
+      <div class="g-item">Foto 6</div>
+      <div class="g-item">Foto 7</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== KONTAK ===================== -->
+<section id="kontak" class="section-dark">
+  <div class="wrap">
+    <div class="eyebrow">Kontak</div>
+    <h2 class="headline reveal" style="max-width:500px;">Hubungi kami.</h2>
+
+    <!-- GANTI: isi info kontak asli -->
+    <div class="grouped-list kontak-list reveal">
+      <div class="grouped-row"><span class="role">Alamat</span><span class="name">Banjar Adat — menyusul</span></div>
+      <div class="grouped-row"><span class="role">WhatsApp</span><span class="name">Nomor menyusul</span></div>
+      <div class="grouped-row"><span class="role">Instagram</span><span class="name">@putra-dharma — menyusul</span></div>
+      <div class="grouped-row"><span class="role">Naungan</span><span class="name">Kelian Adat Banjar setempat</span></div>
+    </div>
+    <div class="note-card">
+      <b>Catatan untuk pengelola:</b> Bagian ini masih memuat data sementara. Kirimkan alamat lengkap, nomor WhatsApp, dan akun media sosial agar bisa diperbarui menjadi data resmi.
+    </div>
+  </div>
+</section>
+
+<div class="poleng-strip"></div>
+
+<footer>
+  <div class="wrap">
+    <div class="f-name">ST. Putra Dharma</div>
+    <p>Sekaa Teruna · Banjar Adat, Bali</p>
+    <p>&copy; <span id="year"></span> ST. Putra Dharma — di bawah naungan Kelian Adat Banjar</p>
+  </div>
+</footer>
+
+<!-- iOS-style bottom tab bar (mobile only) -->
+<nav class="tabbar" id="tabbar">
+  <a href="#" data-target="top" class="tab-item active">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 L12 4 L21 11.5"/><path d="M5.5 10 V20 H18.5 V10"/></svg>
+    Beranda
+  </a>
+  <a href="#tentang" data-target="tentang" class="tab-item">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11 V17"/><circle cx="12" cy="7.5" r="0.9" fill="currentColor" stroke="none"/></svg>
+    Tentang
+  </a>
+  <a href="#struktur" data-target="struktur" class="tab-item">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3.5 20 C3.5 16 6 14 9 14 C12 14 14.5 16 14.5 20"/><circle cx="17" cy="9" r="2.4"/><path d="M14.8 14.5 C17 14.2 19.5 15.8 20.2 18.8"/></svg>
+    Struktur
+  </a>
+  <a href="#kegiatan" data-target="kegiatan" class="tab-item">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 9.5 H20.5"/><path d="M8 3 V6.5"/><path d="M16 3 V6.5"/></svg>
+    Kegiatan
+  </a>
+  <a href="#kontak" data-target="kontak" class="tab-item">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 6.5 L12 13 L20.5 6.5"/></svg>
+    Kontak
+  </a>
+</nav>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:0.15});
+  revealEls.forEach(el=>io.observe(el));
+
+  // Bottom tab bar active state via scroll spy
+  const tabItems = document.querySelectorAll('.tab-item');
+  const sections = ['tentang','struktur','kegiatan','kontak'].map(id=>document.getElementById(id));
+  function setActive(id){
+    tabItems.forEach(t=>t.classList.toggle('active', t.dataset.target===id));
+  }
+  const spy = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ setActive(e.target.id); }
+    });
+  }, {threshold:0.5, rootMargin:"-30% 0px -50% 0px"});
+  sections.forEach(s=> s && spy.observe(s));
+
+  tabItems.forEach(t=>{
+    t.addEventListener('click', (ev)=>{
+      if(t.dataset.target==='top'){
+        ev.preventDefault();
+        window.scrollTo({top:0, behavior:'smooth'});
+        setActive('top');
+      } else {
+        setActive(t.dataset.target);
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
+HTMLEOF
+echo "written"
